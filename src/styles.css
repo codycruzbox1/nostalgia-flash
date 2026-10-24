@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-chrome: #1c1b19;
+  --color-panel: #262421;
+  --color-raised: #322f2b;
+  --color-sunken: #161513;
+  --color-line: #4a463f;
+  --color-line-strong: #6b655c;
+  --color-ink: #f4f0e8;
+  --color-muted: #b1aa9f;
+  --color-faint: #8a8378;
+  --color-accent: #e09a3e;
+  --color-accent-ink: #2a1c08;
+  --color-stage: #fffcf7;
+  --color-paste: #7f7a72;
+  --color-danger: #d15b45;
+  --color-axis-x: #d15b45;
+  --color-axis-y: #7f9a62;
+  --color-axis-z: #6d8eae;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --spacing-tools: 3.25rem;
+  --spacing-dock: 18.5rem;
+  --spacing-layers: 14.5rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: var(--color-chrome);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 45%, transparent);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+
+  .tween-motion {
+    background: color-mix(in srgb, var(--color-accent) 38%, var(--color-sunken));
+  }
+
+  .tween-shape {
+    background: color-mix(in srgb, var(--color-accent) 16%, var(--color-panel));
+  }
+
+  .tween-classic {
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--color-accent) 32%, var(--color-sunken)) 0 3px,
+      var(--color-panel) 3px 7px
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #stage-print,
+  #stage-print * {
+    visibility: visible !important;
+  }
+  #stage-print {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+  }
+}

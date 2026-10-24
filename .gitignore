@@ -5,3 +5,7 @@ dist
 .tanstack
 .env
 .env.*
+artifacts
+screenshots
+attachments
+.grok
